@@ -21,8 +21,6 @@ function useTransactions(transactions) {
   return {
     totalRevenue,
     totalExpense,
-    totalDebt,
-    totalRepaid,
     outstanding,
     netBalance,
   };
