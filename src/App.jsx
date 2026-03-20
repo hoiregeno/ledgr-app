@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import SummaryCards from "./components/SummaryCards";
 
 function App() {
   const [transactions, setTransactions] = useState(() => {
@@ -16,9 +15,7 @@ function App() {
       <nav className="py-4 px-6 bg-teal-900 border-b border-teal-800">
         <h1 className="text-2xl font-bold text-white">Ledgr</h1>
       </nav>
-      <main className="p-6">
-        <SummaryCards transactions={transactions} />
-      </main>
+      <main></main>
     </div>
   );
 }
