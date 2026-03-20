@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import SummaryCards from "./components/SummaryCards";
-import LedgerTable from "./components/LedgerTable";
 
 function App() {
   const [transactions, setTransactions] = useState(() => {
@@ -18,10 +17,7 @@ function App() {
         <h1 className="text-2xl font-bold text-white">Ledgr</h1>
       </nav>
       <main className="p-6">
-        <div className="flex flex-col gap-6">
-          <SummaryCards transactions={transactions} />
-          <LedgerTable transactions={transactions} />
-        </div>
+        <SummaryCards transactions={transactions} />
       </main>
     </div>
   );
