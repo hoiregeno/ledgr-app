@@ -1,5 +1,5 @@
 function Sales() {
-  return <div>Sales</div>;
+  return <h1>Sales</h1>;
 }
 
 export default Sales;
