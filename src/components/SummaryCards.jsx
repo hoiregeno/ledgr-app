@@ -12,7 +12,7 @@ function SummaryCards({ transactions }) {
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
       {cards.map((card) => (
         <div key={card.label} className="bg-teal-900 p-4 rounded-xl">
           <p className="text-sm text-teal-400">{card.label}</p>
