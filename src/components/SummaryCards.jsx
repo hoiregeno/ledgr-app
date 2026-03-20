@@ -1,15 +1,6 @@
-import useTransactions from "../hooks/useTransactions";
+import React from "react";
 
-function SummaryCards({ transactions }) {
-  const {
-    totalRevenue,
-    totalExpense,
-    totalDebt,
-    totalRepaid,
-    outstanding,
-    netBalance,
-  } = useTransactions(transactions);
-
+function SummaryCards() {
   return <div>SummaryCards</div>;
 }
 
