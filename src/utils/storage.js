@@ -26,3 +26,13 @@ export const deleteEntry = (key, id) => {
   saveData(key, newEntry);
   return newEntry;
 };
+
+export const updateEntry = (key, id, updates) => {
+  const existingEntry = getData(key);
+  const newEntry = existingEntry.map((item) =>
+    item.id === id ? { ...item, ...updates } : item,
+  );
+
+  saveData(key, newEntry);
+  return newEntry;
+};
