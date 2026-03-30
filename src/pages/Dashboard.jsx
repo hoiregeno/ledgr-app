@@ -13,25 +13,61 @@ function Dashboard() {
     (acc, item) => acc + item.quantity * item.unitPrice,
     0,
   );
-
   const netProfit = totalSales - totalExpenses;
 
   const CARDS = [
-    { id: 1, label: "Total Revenue", value: totalSales },
-    { id: 2, label: "Total Expenses", value: totalExpenses },
-    { id: 3, label: "Total Debts", value: totalDebts },
-    { id: 4, label: "Inventory", value: totalInventory },
-    { id: 5, label: "Net Profit", value: netProfit },
+    {
+      id: 1,
+      label: "Total Revenue",
+      value: totalSales,
+      color: "text-green-400",
+    },
+    {
+      id: 2,
+      label: "Total Expenses",
+      value: totalExpenses,
+      color: "text-red-400",
+    },
+    {
+      id: 3,
+      label: "Total Debts",
+      value: totalDebts,
+      color: "text-yellow-400",
+    },
+    {
+      id: 4,
+      label: "Stock Value",
+      value: totalInventory,
+      color: "text-blue-400",
+    },
+    {
+      id: 5,
+      label: "Net Profit",
+      value: netProfit,
+      color: netProfit >= 0 ? "text-green-400" : "text-red-400",
+    },
   ];
 
   return (
-    <div>
-      {CARDS.map(({ id, label, value }) => (
-        <div key={id}>
-          <h2>{label}</h2>
-          <p>{value}</p>
-        </div>
-      ))}
+    <div className="flex flex-col gap-8">
+      <div>
+        <h1 className="text-2xl font-bold text-white">Dashboard</h1>
+        <p className="text-gray-400 text-sm mt-1">Your hustle at a glance</p>
+      </div>
+
+      <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
+        {CARDS.map(({ id, label, value, color }) => (
+          <div
+            key={id}
+            className="bg-gray-900 border border-gray-800 rounded-xl p-6 flex flex-col gap-2"
+          >
+            <span className="text-gray-400 text-sm">{label}</span>
+            <span className={`text-2xl font-bold ${color}`}>
+              K{Number(value).toFixed(2)}
+            </span>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
