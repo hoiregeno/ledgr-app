@@ -11,13 +11,11 @@ function Sales() {
     status: "",
   });
 
-  // Updates the form state as the user types
   function handleChange(e) {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
   }
 
-  // Creates a new entry and saves it to localStorage
   function handleSubmit() {
     const newSale = { id: Date.now(), ...form };
     addEntry("sales", newSale);
@@ -28,7 +26,6 @@ function Sales() {
   function handleToggle(id) {
     const current = sales.find((item) => item.id === id);
     const newStatus = current.status === "paid" ? "unpaid" : "paid";
-
     updateEntry("sales", id, { status: newStatus });
     setSales(
       sales.map((item) =>
@@ -38,82 +35,133 @@ function Sales() {
   }
 
   return (
-    <div>
-      <input
-        type="text"
-        name="name"
-        value={form.name}
-        onChange={handleChange}
-        placeholder="Customer name"
-      />
-      <input
-        type="number"
-        name="amount"
-        value={form.amount}
-        onChange={handleChange}
-        placeholder="Amount"
-      />
-      <input
-        type="date"
-        name="date"
-        value={form.date}
-        onChange={handleChange}
-      />
-      <select name="category" value={form.category} onChange={handleChange}>
-        <option value="">Select category</option>
-        <option value="Betelnut">Betelnut</option>
-        <option value="Cigarettes">Cigarettes</option>
-        <option value="Other">Other</option>
-      </select>
+    <div className="flex flex-col gap-8">
+      {/* Heading */}
+      <div>
+        <h1 className="text-2xl font-bold text-white">Sales</h1>
+        <p className="text-gray-400 text-sm mt-1">Track your sales entries</p>
+      </div>
 
-      <label>
-        <input
-          type="radio"
-          name="status"
-          value="paid"
-          onChange={handleChange}
-        />
-        Paid
-      </label>
-      <label>
-        <input
-          type="radio"
-          name="status"
-          value="unpaid"
-          onChange={handleChange}
-        />
-        Unpaid
-      </label>
+      {/* Form */}
+      <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 flex flex-col gap-4">
+        <div className="grid grid-cols-2 gap-4">
+          <input
+            type="text"
+            name="name"
+            value={form.name}
+            onChange={handleChange}
+            placeholder="Customer name"
+            className="bg-gray-800 text-white placeholder-gray-500 rounded-lg px-4 py-2 w-full"
+          />
+          <input
+            type="number"
+            name="amount"
+            value={form.amount}
+            onChange={handleChange}
+            placeholder="Amount (K)"
+            className="bg-gray-800 text-white placeholder-gray-500 rounded-lg px-4 py-2 w-full"
+          />
+          <input
+            type="date"
+            name="date"
+            value={form.date}
+            onChange={handleChange}
+            className="bg-gray-800 text-white rounded-lg px-4 py-2 w-full"
+          />
+          <select
+            name="category"
+            value={form.category}
+            onChange={handleChange}
+            className="bg-gray-800 text-white rounded-lg px-4 py-2 w-full"
+          >
+            <option value="">Select category</option>
+            <option value="Betelnut">Betelnut</option>
+            <option value="Cigarettes">Cigarettes</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
 
-      <button onClick={handleSubmit}>Add Sale</button>
+        {/* Radio buttons */}
+        <div className="flex gap-6">
+          <label className="flex items-center gap-2 text-gray-400 text-sm cursor-pointer">
+            <input
+              type="radio"
+              name="status"
+              value="paid"
+              onChange={handleChange}
+            />
+            Paid
+          </label>
+          <label className="flex items-center gap-2 text-gray-400 text-sm cursor-pointer">
+            <input
+              type="radio"
+              name="status"
+              value="unpaid"
+              onChange={handleChange}
+            />
+            Unpaid
+          </label>
+        </div>
 
-      {/* Sales list */}
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Amount</th>
-            <th>Date</th>
-            <th>Category</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {sales.map((sale) => (
-            <tr key={sale.id}>
-              <td>{sale.name}</td>
-              <td>K{sale.amount}</td>
-              <td>{sale.date}</td>
-              <td>{sale.category}</td>
-              <td>
-                <button onClick={() => handleToggle(sale.id)}>
-                  {sale.status}
-                </button>
-              </td>
+        <button
+          onClick={handleSubmit}
+          className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg w-fit transition-colors"
+        >
+          Add Sale
+        </button>
+      </div>
+
+      {/* Table */}
+      <div className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden">
+        <table className="w-full">
+          <thead>
+            <tr className="border-b border-gray-800">
+              <th className="text-gray-400 text-sm px-4 py-3 text-left">
+                Name
+              </th>
+              <th className="text-gray-400 text-sm px-4 py-3 text-left">
+                Amount
+              </th>
+              <th className="text-gray-400 text-sm px-4 py-3 text-left">
+                Date
+              </th>
+              <th className="text-gray-400 text-sm px-4 py-3 text-left">
+                Category
+              </th>
+              <th className="text-gray-400 text-sm px-4 py-3 text-left">
+                Status
+              </th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {sales.map((sale) => (
+              <tr
+                key={sale.id}
+                className="border-b border-gray-800 last:border-0"
+              >
+                <td className="text-white text-sm px-4 py-3">{sale.name}</td>
+                <td className="text-white text-sm px-4 py-3">K{sale.amount}</td>
+                <td className="text-white text-sm px-4 py-3">{sale.date}</td>
+                <td className="text-white text-sm px-4 py-3">
+                  {sale.category}
+                </td>
+                <td className="text-sm px-4 py-3">
+                  <button
+                    onClick={() => handleToggle(sale.id)}
+                    className={`px-3 py-1 rounded-full text-xs font-semibold transition-colors ${
+                      sale.status === "paid"
+                        ? "bg-green-500/20 text-green-400"
+                        : "bg-yellow-500/20 text-yellow-400"
+                    }`}
+                  >
+                    {sale.status}
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
