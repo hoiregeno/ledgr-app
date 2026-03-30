@@ -23,57 +23,100 @@ function Expenses() {
   }
 
   return (
-    <div>
-      <input
-        type="text"
-        name="name"
-        value={form.name}
-        onChange={handleChange}
-        placeholder="Customer name"
-      />
-      <input
-        type="number"
-        name="amount"
-        value={form.amount}
-        onChange={handleChange}
-        placeholder="Amount"
-      />
-      <input
-        type="date"
-        name="date"
-        value={form.date}
-        onChange={handleChange}
-      />
-      <select name="category" value={form.category} onChange={handleChange}>
-        <option value="">Select category</option>
-        <option value="Restock">Restock</option>
-        <option value="Transport">Transport</option>
-        <option value="Other">Other</option>
-      </select>
+    <div className="flex flex-col gap-8">
+      {/* Heading */}
+      <div>
+        <h1 className="text-2xl font-bold text-white">Expenses</h1>
+        <p className="text-gray-400 text-sm mt-1">
+          Track what you spend on the hustle
+        </p>
+      </div>
 
-      <button onClick={handleSubmit}>Add Expense</button>
+      {/* Form */}
+      <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 flex flex-col gap-4">
+        <div className="grid grid-cols-2 gap-4">
+          <input
+            type="text"
+            name="name"
+            value={form.name}
+            onChange={handleChange}
+            placeholder="Expense name"
+            className="bg-gray-800 text-white placeholder-gray-500 rounded-lg px-4 py-2 w-full"
+          />
+          <input
+            type="number"
+            name="amount"
+            value={form.amount}
+            onChange={handleChange}
+            placeholder="Amount (K)"
+            className="bg-gray-800 text-white placeholder-gray-500 rounded-lg px-4 py-2 w-full"
+          />
+          <input
+            type="date"
+            name="date"
+            value={form.date}
+            onChange={handleChange}
+            className="bg-gray-800 text-white rounded-lg px-4 py-2 w-full"
+          />
+          <select
+            name="category"
+            value={form.category}
+            onChange={handleChange}
+            className="bg-gray-800 text-white rounded-lg px-4 py-2 w-full"
+          >
+            <option value="">Select category</option>
+            <option value="Restock">Restock</option>
+            <option value="Transport">Transport</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
 
-      {/* Expense list */}
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Amount</th>
-            <th>Date</th>
-            <th>Category</th>
-          </tr>
-        </thead>
-        <tbody>
-          {expenses.map((expense) => (
-            <tr key={expense.id}>
-              <td>{expense.name}</td>
-              <td>K{expense.amount}</td>
-              <td>{expense.date}</td>
-              <td>{expense.category}</td>
+        <button
+          onClick={handleSubmit}
+          className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg w-fit transition-colors"
+        >
+          Add Expense
+        </button>
+      </div>
+
+      {/* Table */}
+      <div className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden">
+        <table className="w-full">
+          <thead>
+            <tr className="border-b border-gray-800">
+              <th className="text-gray-400 text-sm px-4 py-3 text-left">
+                Name
+              </th>
+              <th className="text-gray-400 text-sm px-4 py-3 text-left">
+                Amount
+              </th>
+              <th className="text-gray-400 text-sm px-4 py-3 text-left">
+                Date
+              </th>
+              <th className="text-gray-400 text-sm px-4 py-3 text-left">
+                Category
+              </th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {expenses.map((expense) => (
+              <tr
+                key={expense.id}
+                className="border-b border-gray-800 last:border-0"
+              >
+                <td className="text-white text-sm px-4 py-3">{expense.name}</td>
+                <td className="text-red-400 text-sm px-4 py-3">
+                  K{expense.amount}
+                </td>
+                <td className="text-white text-sm px-4 py-3">{expense.date}</td>
+                <td className="text-white text-sm px-4 py-3">
+                  {expense.category}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
