@@ -16,13 +16,7 @@ function Inventory() {
   }
 
   function handleSubmit() {
-    if (
-      !form.name ||
-      !form.amount ||
-      !form.date ||
-      !form.category ||
-      !form.status
-    ) {
+    if (!form.name || !form.quantity || !form.unitPrice || !form.category) {
       alert("Please fill in all fields before submitting.");
       return;
     }
