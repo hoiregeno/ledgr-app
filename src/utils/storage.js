@@ -59,3 +59,13 @@ export const exportToCSV = (data, filename) => {
   a.click();
   URL.revokeObjectURL(url);
 };
+
+export const resetData = () => {
+  if (window.confirm("Are you sure you want to reset all data?")) {
+    localStorage.removeItem("sales");
+    localStorage.removeItem("expenses");
+    localStorage.removeItem("debts");
+    localStorage.removeItem("inventory");
+    window.location.reload();
+  }
+};

@@ -1,4 +1,4 @@
-import { getData } from "../utils/storage";
+import { getData, resetData } from "../utils/storage";
 
 function Dashboard() {
   const sales = getData("sales");
@@ -49,13 +49,13 @@ function Dashboard() {
   ];
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-8 min-h-full justify-between">
       <div>
         <h1 className="text-2xl font-bold text-white">Dashboard</h1>
         <p className="text-gray-400 text-sm mt-1">Your hustle at a glance</p>
       </div>
 
-      <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 mb-auto">
         {CARDS.map(({ id, label, value, color }) => (
           <div
             key={id}
@@ -67,6 +67,15 @@ function Dashboard() {
             </span>
           </div>
         ))}
+      </div>
+
+      <div className="text-center pt-4 border-t-2 border-dashed border-t-gray-600">
+        <button
+          onClick={resetData}
+          className=" text-gray-600 hover:text-red-400 text-sm transition-colors"
+        >
+          Reset All Data
+        </button>
       </div>
     </div>
   );
