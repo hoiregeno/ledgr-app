@@ -10,19 +10,19 @@ function Debts() {
     status: "",
   });
 
+  const [statusFilter, setStatusFilter] = useState("all");
+
+  const filteredDebts = debts.filter(
+    (item) => statusFilter === "all" || item.status === statusFilter,
+  );
+
   function handleChange(e) {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
   }
 
   function handleSubmit() {
-    if (
-      !form.name ||
-      !form.amount ||
-      !form.date ||
-      !form.category ||
-      !form.status
-    ) {
+    if (!form.name || !form.amount || !form.date || !form.status) {
       alert("Please fill in all fields before submitting.");
       return;
     }
@@ -109,6 +109,18 @@ function Debts() {
         </button>
       </div>
 
+      <div>
+        <select
+          value={statusFilter}
+          onChange={(e) => setStatusFilter(e.target.value)}
+          className="bg-gray-800 text-white rounded-lg px-4 py-2"
+        >
+          <option value="all">Select status</option>
+          <option value="settled">settled</option>
+          <option value="unsettled">unsettled</option>
+        </select>
+      </div>
+
       {/* Table */}
       <div className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden">
         <table className="w-full">
@@ -129,7 +141,7 @@ function Debts() {
             </tr>
           </thead>
           <tbody>
-            {debts.map((debt) => (
+            {filteredDebts.map((debt) => (
               <tr
                 key={debt.id}
                 className="border-b border-gray-800 last:border-0"
