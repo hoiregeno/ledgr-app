@@ -36,3 +36,26 @@ export const updateEntry = (key, id, updates) => {
   saveData(key, newEntry);
   return newEntry;
 };
+
+// converts your data array into a downloadable .csv file that opens in Excel or Google Sheets
+export const exportToCSV = (data, filename) => {
+  // don't export if table is empty
+  if (!data.length) return;
+
+  // grabs column names from the first object's keys
+  const headers = Object.keys(data[0]);
+
+  // converts each entry to a comma separated line
+  const rows = data.map((item) => Object.values(item).join(","));
+
+  // joins headers and rows into one big string
+  const csv = [headers.join(","), ...rows].join("\n");
+
+  const blob = new Blob([csv], { type: "text/csv" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  a.click();
+  URL.revokeObjectURL(url);
+};
