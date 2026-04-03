@@ -10,6 +10,14 @@ function Sales() {
     category: "",
     status: "",
   });
+  const [categoryFilter, setCategoryFilter] = useState("all");
+  const [statusFilter, setStatusFilter] = useState("all");
+
+  const filteredSales = sales.filter(
+    (item) =>
+      (categoryFilter === "all" || item.category === categoryFilter) &&
+      (statusFilter === "all" || item.status === statusFilter),
+  );
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -122,6 +130,30 @@ function Sales() {
         </button>
       </div>
 
+      {/* Filters */}
+      <div className="flex gap-4">
+        <select
+          value={categoryFilter}
+          onChange={(e) => setCategoryFilter(e.target.value)}
+          className="bg-gray-800 text-white rounded-lg px-4 py-2"
+        >
+          <option value="all">All Categories</option>
+          <option value="Betelnut">Betelnut</option>
+          <option value="Cigarettes">Cigarettes</option>
+          <option value="Other">Other</option>
+        </select>
+
+        <select
+          value={statusFilter}
+          onChange={(e) => setStatusFilter(e.target.value)}
+          className="bg-gray-800 text-white rounded-lg px-4 py-2"
+        >
+          <option value="all">All Status</option>
+          <option value="paid">Paid</option>
+          <option value="unpaid">Unpaid</option>
+        </select>
+      </div>
+
       {/* Table */}
       <div className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden">
         <table className="w-full">
@@ -145,7 +177,7 @@ function Sales() {
             </tr>
           </thead>
           <tbody>
-            {sales.map((sale) => (
+            {filteredSales.map((sale) => (
               <tr
                 key={sale.id}
                 className="border-b border-gray-800 last:border-0"
