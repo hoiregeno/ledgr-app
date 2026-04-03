@@ -9,6 +9,11 @@ function Expenses() {
     date: "",
     category: "",
   });
+  const [categoryFilter, setCategoryFilter] = useState("all");
+
+  const filteredExpenses = expenses.filter(
+    (item) => categoryFilter === "all" || item.category === categoryFilter,
+  );
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -16,13 +21,7 @@ function Expenses() {
   }
 
   function handleSubmit() {
-    if (
-      !form.name ||
-      !form.amount ||
-      !form.date ||
-      !form.category ||
-      !form.status
-    ) {
+    if (!form.name || !form.amount || !form.date || !form.category) {
       alert("Please fill in all fields before submitting.");
       return;
     }
@@ -90,6 +89,19 @@ function Expenses() {
         </button>
       </div>
 
+      <div className="flex gap-4">
+        <select
+          value={categoryFilter}
+          onChange={(e) => setCategoryFilter(e.target.value)}
+          className="bg-gray-800 text-white rounded-lg px-4 py-2"
+        >
+          <option value="all">All Categories</option>
+          <option value="Restock">Restock</option>
+          <option value="Transport">Transport</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
       {/* Table */}
       <div className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden">
         <table className="w-full">
@@ -110,7 +122,7 @@ function Expenses() {
             </tr>
           </thead>
           <tbody>
-            {expenses.map((expense) => (
+            {filteredExpenses.map((expense) => (
               <tr
                 key={expense.id}
                 className="border-b border-gray-800 last:border-0"
