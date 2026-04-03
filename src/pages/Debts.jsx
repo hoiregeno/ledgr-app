@@ -130,50 +130,56 @@ function Debts() {
 
       {/* Table */}
       <div className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden">
-        <table className="w-full">
-          <thead>
-            <tr className="border-b border-gray-800">
-              <th className="text-gray-400 text-sm px-4 py-3 text-left">
-                Name
-              </th>
-              <th className="text-gray-400 text-sm px-4 py-3 text-left">
-                Amount
-              </th>
-              <th className="text-gray-400 text-sm px-4 py-3 text-left">
-                Date
-              </th>
-              <th className="text-gray-400 text-sm px-4 py-3 text-left">
-                Status
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredDebts.map((debt) => (
-              <tr
-                key={debt.id}
-                className="border-b border-gray-800 last:border-0"
-              >
-                <td className="text-white text-sm px-4 py-3">{debt.name}</td>
-                <td className="text-yellow-400 text-sm px-4 py-3">
-                  K{debt.amount}
-                </td>
-                <td className="text-white text-sm px-4 py-3">{debt.date}</td>
-                <td className="text-sm px-4 py-3">
-                  <button
-                    onClick={() => handleToggle(debt.id)}
-                    className={`px-3 py-1 rounded-full text-xs font-semibold transition-colors ${
-                      debt.status === "settled"
-                        ? "bg-green-500/20 text-green-400"
-                        : "bg-yellow-500/20 text-yellow-400"
-                    }`}
-                  >
-                    {debt.status}
-                  </button>
-                </td>
+        {filteredDebts.length === 0 ? (
+          <p className="text-gray-500 text-sm text-center py-8">
+            No debts entries yet.
+          </p>
+        ) : (
+          <table className="w-full">
+            <thead>
+              <tr className="border-b border-gray-800">
+                <th className="text-gray-400 text-sm px-4 py-3 text-left">
+                  Name
+                </th>
+                <th className="text-gray-400 text-sm px-4 py-3 text-left">
+                  Amount
+                </th>
+                <th className="text-gray-400 text-sm px-4 py-3 text-left">
+                  Date
+                </th>
+                <th className="text-gray-400 text-sm px-4 py-3 text-left">
+                  Status
+                </th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {filteredDebts.map((debt) => (
+                <tr
+                  key={debt.id}
+                  className="border-b border-gray-800 last:border-0"
+                >
+                  <td className="text-white text-sm px-4 py-3">{debt.name}</td>
+                  <td className="text-yellow-400 text-sm px-4 py-3">
+                    K{debt.amount}
+                  </td>
+                  <td className="text-white text-sm px-4 py-3">{debt.date}</td>
+                  <td className="text-sm px-4 py-3">
+                    <button
+                      onClick={() => handleToggle(debt.id)}
+                      className={`px-3 py-1 rounded-full text-xs font-semibold transition-colors ${
+                        debt.status === "settled"
+                          ? "bg-green-500/20 text-green-400"
+                          : "bg-yellow-500/20 text-yellow-400"
+                      }`}
+                    >
+                      {debt.status}
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </div>
     </div>
   );

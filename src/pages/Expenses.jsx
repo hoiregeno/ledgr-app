@@ -111,41 +111,51 @@ function Expenses() {
 
       {/* Table */}
       <div className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden">
-        <table className="w-full">
-          <thead>
-            <tr className="border-b border-gray-800">
-              <th className="text-gray-400 text-sm px-4 py-3 text-left">
-                Name
-              </th>
-              <th className="text-gray-400 text-sm px-4 py-3 text-left">
-                Amount
-              </th>
-              <th className="text-gray-400 text-sm px-4 py-3 text-left">
-                Date
-              </th>
-              <th className="text-gray-400 text-sm px-4 py-3 text-left">
-                Category
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredExpenses.map((expense) => (
-              <tr
-                key={expense.id}
-                className="border-b border-gray-800 last:border-0"
-              >
-                <td className="text-white text-sm px-4 py-3">{expense.name}</td>
-                <td className="text-red-400 text-sm px-4 py-3">
-                  K{expense.amount}
-                </td>
-                <td className="text-white text-sm px-4 py-3">{expense.date}</td>
-                <td className="text-white text-sm px-4 py-3">
-                  {expense.category}
-                </td>
+        {filteredExpenses.length === 0 ? (
+          <p className="text-gray-500 text-sm text-center py-8">
+            No expenses entries yet.
+          </p>
+        ) : (
+          <table className="w-full">
+            <thead>
+              <tr className="border-b border-gray-800">
+                <th className="text-gray-400 text-sm px-4 py-3 text-left">
+                  Name
+                </th>
+                <th className="text-gray-400 text-sm px-4 py-3 text-left">
+                  Amount
+                </th>
+                <th className="text-gray-400 text-sm px-4 py-3 text-left">
+                  Date
+                </th>
+                <th className="text-gray-400 text-sm px-4 py-3 text-left">
+                  Category
+                </th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {filteredExpenses.map((expense) => (
+                <tr
+                  key={expense.id}
+                  className="border-b border-gray-800 last:border-0"
+                >
+                  <td className="text-white text-sm px-4 py-3">
+                    {expense.name}
+                  </td>
+                  <td className="text-red-400 text-sm px-4 py-3">
+                    K{expense.amount}
+                  </td>
+                  <td className="text-white text-sm px-4 py-3">
+                    {expense.date}
+                  </td>
+                  <td className="text-white text-sm px-4 py-3">
+                    {expense.category}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </div>
     </div>
   );

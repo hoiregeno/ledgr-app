@@ -113,45 +113,55 @@ function Inventory() {
 
       {/* Table */}
       <div className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden">
-        <table className="w-full">
-          <thead>
-            <tr className="border-b border-gray-800">
-              <th className="text-gray-400 text-sm px-4 py-3 text-left">
-                Name
-              </th>
-              <th className="text-gray-400 text-sm px-4 py-3 text-left">
-                Quantity
-              </th>
-              <th className="text-gray-400 text-sm px-4 py-3 text-left">
-                Unit Price
-              </th>
-              <th className="text-gray-400 text-sm px-4 py-3 text-left">
-                Total Value
-              </th>
-              <th className="text-gray-400 text-sm px-4 py-3 text-left">
-                Category
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredInventory.map((inv) => (
-              <tr
-                key={inv.id}
-                className="border-b border-gray-800 last:border-0"
-              >
-                <td className="text-white text-sm px-4 py-3">{inv.name}</td>
-                <td className="text-white text-sm px-4 py-3">{inv.quantity}</td>
-                <td className="text-white text-sm px-4 py-3">
-                  K{inv.unitPrice}
-                </td>
-                <td className="text-blue-400 text-sm px-4 py-3">
-                  K{(inv.quantity * inv.unitPrice).toFixed(2)}
-                </td>
-                <td className="text-white text-sm px-4 py-3">{inv.category}</td>
+        {filteredInventory.length === 0 ? (
+          <p className="text-gray-500 text-sm text-center py-8">
+            No inventory entries yet.
+          </p>
+        ) : (
+          <table className="w-full">
+            <thead>
+              <tr className="border-b border-gray-800">
+                <th className="text-gray-400 text-sm px-4 py-3 text-left">
+                  Name
+                </th>
+                <th className="text-gray-400 text-sm px-4 py-3 text-left">
+                  Quantity
+                </th>
+                <th className="text-gray-400 text-sm px-4 py-3 text-left">
+                  Unit Price
+                </th>
+                <th className="text-gray-400 text-sm px-4 py-3 text-left">
+                  Total Value
+                </th>
+                <th className="text-gray-400 text-sm px-4 py-3 text-left">
+                  Category
+                </th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {filteredInventory.map((inv) => (
+                <tr
+                  key={inv.id}
+                  className="border-b border-gray-800 last:border-0"
+                >
+                  <td className="text-white text-sm px-4 py-3">{inv.name}</td>
+                  <td className="text-white text-sm px-4 py-3">
+                    {inv.quantity}
+                  </td>
+                  <td className="text-white text-sm px-4 py-3">
+                    K{inv.unitPrice}
+                  </td>
+                  <td className="text-blue-400 text-sm px-4 py-3">
+                    K{(inv.quantity * inv.unitPrice).toFixed(2)}
+                  </td>
+                  <td className="text-white text-sm px-4 py-3">
+                    {inv.category}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </div>
     </div>
   );
