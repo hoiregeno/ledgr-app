@@ -16,6 +16,16 @@ function Debts() {
   }
 
   function handleSubmit() {
+    if (
+      !form.name ||
+      !form.amount ||
+      !form.date ||
+      !form.category ||
+      !form.status
+    ) {
+      alert("Please fill in all fields before submitting.");
+      return;
+    }
     const newDebt = { id: Date.now(), ...form };
     addEntry("debts", newDebt);
     setDebts([...debts, newDebt]);

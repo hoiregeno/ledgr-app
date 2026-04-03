@@ -16,6 +16,17 @@ function Inventory() {
   }
 
   function handleSubmit() {
+    if (
+      !form.name ||
+      !form.amount ||
+      !form.date ||
+      !form.category ||
+      !form.status
+    ) {
+      alert("Please fill in all fields before submitting.");
+      return;
+    }
+
     const newInventory = { id: Date.now(), ...form };
     addEntry("inventory", newInventory);
     setInventory([...inventory, newInventory]);

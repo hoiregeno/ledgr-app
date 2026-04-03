@@ -17,6 +17,17 @@ function Sales() {
   }
 
   function handleSubmit() {
+    if (
+      !form.name ||
+      !form.amount ||
+      !form.date ||
+      !form.category ||
+      !form.status
+    ) {
+      alert("Please fill in all fields before submitting.");
+      return;
+    }
+
     const newSale = { id: Date.now(), ...form };
     addEntry("sales", newSale);
     setSales([...sales, newSale]);

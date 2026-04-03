@@ -16,6 +16,17 @@ function Expenses() {
   }
 
   function handleSubmit() {
+    if (
+      !form.name ||
+      !form.amount ||
+      !form.date ||
+      !form.category ||
+      !form.status
+    ) {
+      alert("Please fill in all fields before submitting.");
+      return;
+    }
+
     const newExpense = { id: Date.now(), ...form };
     addEntry("expenses", newExpense);
     setExpenses([...expenses, newExpense]);
