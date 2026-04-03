@@ -9,11 +9,11 @@ function Inventory() {
     unitPrice: "",
     category: "",
   });
+  const [categoryFilter, setCategoryFilter] = useState("all");
 
-  function handleChange(e) {
-    const { name, value } = e.target;
-    setForm({ ...form, [name]: value });
-  }
+  const filteredInventory = inventory.filter(
+    (item) => categoryFilter === "all" || item.category === categoryFilter,
+  );
 
   function handleSubmit() {
     if (!form.name || !form.quantity || !form.unitPrice || !form.category) {
@@ -25,6 +25,11 @@ function Inventory() {
     addEntry("inventory", newInventory);
     setInventory([...inventory, newInventory]);
     setForm({ name: "", quantity: "", unitPrice: "", category: "" });
+  }
+
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value });
   }
 
   return (
@@ -84,6 +89,21 @@ function Inventory() {
         </button>
       </div>
 
+      {/* Filter options */}
+      <div>
+        <select
+          value={categoryFilter}
+          onChange={(e) => setCategoryFilter(e.target.value)}
+          className="bg-gray-800 text-white rounded-lg px-4 py-2"
+        >
+          <option value="all">All categories</option>
+          <option value="Betelnut">Betelnut</option>
+          <option value="Cigarettes">Cigarettes</option>
+          <option value="Sweets">Sweets</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
       {/* Table */}
       <div className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden">
         <table className="w-full">
@@ -107,7 +127,7 @@ function Inventory() {
             </tr>
           </thead>
           <tbody>
-            {inventory.map((inv) => (
+            {filteredInventory.map((inv) => (
               <tr
                 key={inv.id}
                 className="border-b border-gray-800 last:border-0"
