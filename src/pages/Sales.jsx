@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { addEntry, getData, updateEntry } from "../utils/storage";
+import { addEntry, getData, updateEntry, exportToCSV } from "../utils/storage";
 
 function Sales() {
   const [sales, setSales] = useState(getData("sales"));
@@ -152,6 +152,13 @@ function Sales() {
           <option value="paid">Paid</option>
           <option value="unpaid">Unpaid</option>
         </select>
+
+        <button
+          onClick={() => exportToCSV(sales, "sales.csv")}
+          className="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-lg text-sm transition-colors"
+        >
+          Export CSV
+        </button>
       </div>
 
       {/* Table */}

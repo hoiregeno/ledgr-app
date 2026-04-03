@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getData, addEntry, updateEntry } from "../utils/storage";
+import { getData, addEntry, updateEntry, exportToCSV } from "../utils/storage";
 
 function Debts() {
   const [debts, setDebts] = useState(getData("debts"));
@@ -109,7 +109,7 @@ function Debts() {
         </button>
       </div>
 
-      <div>
+      <div className="flex gap-4">
         <select
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
@@ -119,6 +119,13 @@ function Debts() {
           <option value="settled">settled</option>
           <option value="unsettled">unsettled</option>
         </select>
+
+        <button
+          onClick={() => exportToCSV(debts, "debts.csv")}
+          className="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-lg text-sm transition-colors"
+        >
+          Export CSV
+        </button>
       </div>
 
       {/* Table */}

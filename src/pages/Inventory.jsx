@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getData, addEntry } from "../utils/storage";
+import { getData, addEntry, exportToCSV } from "../utils/storage";
 
 function Inventory() {
   const [inventory, setInventory] = useState(getData("inventory"));
@@ -90,7 +90,7 @@ function Inventory() {
       </div>
 
       {/* Filter options */}
-      <div>
+      <div className="flex gap-4">
         <select
           value={categoryFilter}
           onChange={(e) => setCategoryFilter(e.target.value)}
@@ -102,6 +102,13 @@ function Inventory() {
           <option value="Sweets">Sweets</option>
           <option value="Other">Other</option>
         </select>
+
+        <button
+          onClick={() => exportToCSV(inventory, "inventory.csv")}
+          className="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-lg text-sm transition-colors"
+        >
+          Export CSV
+        </button>
       </div>
 
       {/* Table */}
