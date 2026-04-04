@@ -29,8 +29,7 @@ function Expenses() {
     const newExpense = {
       id: Date.now(),
       ...form,
-      quantity: Number(form.quantity),
-      unitPrice: Number(form.unitPrice),
+      amount: Number(form.amount).toFixed(2),
     };
 
     addEntry("expenses", newExpense);
@@ -125,7 +124,7 @@ function Expenses() {
           <table className="w-full">
             <thead>
               <tr className="border-b border-gray-800">
-                <th className="text-gray-400 text-sm px-4 py-3 text-left">
+                <th className="text-gray-400 text-sm px-4 py-3 text-left capitalize">
                   Name
                 </th>
                 <th className="text-gray-400 text-sm px-4 py-3 text-left">
