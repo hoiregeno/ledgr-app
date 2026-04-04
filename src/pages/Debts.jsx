@@ -26,7 +26,7 @@ function Debts() {
       alert("Please fill in all fields before submitting.");
       return;
     }
-    const newDebt = { id: Date.now(), ...form };
+    const newDebt = { id: Date.now(), ...form, amount: Number(form.amount) };
     addEntry("debts", newDebt);
     setDebts([...debts, newDebt]);
     setForm({ name: "", amount: "", date: "", status: "" });

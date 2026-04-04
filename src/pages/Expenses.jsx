@@ -26,7 +26,13 @@ function Expenses() {
       return;
     }
 
-    const newExpense = { id: Date.now(), ...form };
+    const newExpense = {
+      id: Date.now(),
+      ...form,
+      quantity: Number(form.quantity),
+      unitPrice: Number(form.unitPrice),
+    };
+
     addEntry("expenses", newExpense);
     setExpenses([...expenses, newExpense]);
     setForm({ name: "", amount: "", date: "", category: "" });

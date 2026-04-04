@@ -36,7 +36,8 @@ function Sales() {
       return;
     }
 
-    const newSale = { id: Date.now(), ...form };
+    const newSale = { id: Date.now(), ...form, amount: Number(form.amount) };
+
     addEntry("sales", newSale);
     setSales([...sales, newSale]);
     setForm({ name: "", amount: "", date: "", category: "", status: "" });

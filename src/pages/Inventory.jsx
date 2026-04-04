@@ -21,7 +21,13 @@ function Inventory() {
       return;
     }
 
-    const newInventory = { id: Date.now(), ...form };
+    const newInventory = {
+      id: Date.now(),
+      ...form,
+      quantity: Number(form.quantity),
+      unitPrice: Number(form.unitPrice),
+    };
+
     addEntry("inventory", newInventory);
     setInventory([...inventory, newInventory]);
     setForm({ name: "", quantity: "", unitPrice: "", category: "" });
