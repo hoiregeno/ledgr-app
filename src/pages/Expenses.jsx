@@ -29,7 +29,7 @@ function Expenses() {
     const newExpense = {
       id: Date.now(),
       ...form,
-      amount: Number(form.amount).toFixed(2),
+      amount: Number(form.amount),
     };
 
     addEntry("expenses", newExpense);
@@ -148,7 +148,7 @@ function Expenses() {
                     {expense.name}
                   </td>
                   <td className="text-red-400 text-sm px-4 py-3">
-                    K{expense.amount}
+                    K{expense.amount.toFixed(2)}
                   </td>
                   <td className="text-white text-sm px-4 py-3">
                     {expense.date}
