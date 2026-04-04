@@ -39,7 +39,7 @@ function Sales() {
     const newSale = {
       id: Date.now(),
       ...form,
-      name: form.name.trim().toLowerCase(),
+      name: form.name.trim(),
       amount: Number(form.amount),
     };
 
