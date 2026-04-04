@@ -158,9 +158,11 @@ function Debts() {
                   key={debt.id}
                   className="border-b border-gray-800 last:border-0"
                 >
-                  <td className="text-white text-sm px-4 py-3">{debt.name}</td>
+                  <td className="text-white text-sm px-4 py-3 capitalize">
+                    {debt.name}
+                  </td>
                   <td className="text-yellow-400 text-sm px-4 py-3">
-                    K{debt.amount}
+                    K{debt.amount.toFixed(2)}
                   </td>
                   <td className="text-white text-sm px-4 py-3">{debt.date}</td>
                   <td className="text-sm px-4 py-3">

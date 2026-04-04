@@ -36,7 +36,12 @@ function Sales() {
       return;
     }
 
-    const newSale = { id: Date.now(), ...form, amount: Number(form.amount) };
+    const newSale = {
+      id: Date.now(),
+      ...form,
+      name: form.name.trim().toLowerCase(),
+      amount: Number(form.amount),
+    };
 
     addEntry("sales", newSale);
     setSales([...sales, newSale]);
@@ -195,9 +200,11 @@ function Sales() {
                   key={sale.id}
                   className="border-b border-gray-800 last:border-0"
                 >
-                  <td className="text-white text-sm px-4 py-3">{sale.name}</td>
+                  <td className="text-white text-sm px-4 py-3 capitalize">
+                    {sale.name}
+                  </td>
                   <td className="text-white text-sm px-4 py-3">
-                    K{sale.amount}
+                    K{sale.amount.toFixed(2)}
                   </td>
                   <td className="text-white text-sm px-4 py-3">{sale.date}</td>
                   <td className="text-white text-sm px-4 py-3">

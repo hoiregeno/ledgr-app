@@ -127,7 +127,7 @@ function Inventory() {
           <table className="w-full">
             <thead>
               <tr className="border-b border-gray-800">
-                <th className="text-gray-400 text-sm px-4 py-3 text-left">
+                <th className="text-gray-400 text-sm px-4 py-3 text-left capitalize">
                   Name
                 </th>
                 <th className="text-gray-400 text-sm px-4 py-3 text-left">
@@ -150,12 +150,14 @@ function Inventory() {
                   key={inv.id}
                   className="border-b border-gray-800 last:border-0"
                 >
-                  <td className="text-white text-sm px-4 py-3">{inv.name}</td>
-                  <td className="text-white text-sm px-4 py-3">
-                    {inv.quantity}
+                  <td className="text-white text-sm px-4 py-3 capitalize">
+                    {inv.name}
                   </td>
                   <td className="text-white text-sm px-4 py-3">
-                    K{inv.unitPrice}
+                    {Math.floor(inv.quantity)}
+                  </td>
+                  <td className="text-white text-sm px-4 py-3">
+                    K{inv.unitPrice.toFixed(2)}
                   </td>
                   <td className="text-blue-400 text-sm px-4 py-3">
                     K{(inv.quantity * inv.unitPrice).toFixed(2)}
