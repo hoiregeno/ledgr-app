@@ -29,6 +29,7 @@ function Expenses() {
     const newExpense = {
       id: Date.now(),
       ...form,
+      name: form.name.trim(),
       amount: Number(form.amount),
     };
 
@@ -56,7 +57,7 @@ function Expenses() {
             value={form.name}
             onChange={handleChange}
             placeholder="Expense name"
-            className="bg-gray-800 text-white border border-transparent focus:border-gray-500 placeholder-gray-500 rounded-lg px-4 py-2 w-full outline-hidden"
+            className="bg-gray-800 text-white border border-transparent focus:border-gray-500 placeholder-gray-500 rounded-lg px-4 py-2 w-full outline-none"
           />
           <input
             type="number"
@@ -64,20 +65,20 @@ function Expenses() {
             value={form.amount}
             onChange={handleChange}
             placeholder="Amount (K)"
-            className="bg-gray-800 text-white border border-transparent focus:border-gray-500 placeholder-gray-500 rounded-lg px-4 py-2 w-full outline-hidden"
+            className="bg-gray-800 text-white border border-transparent focus:border-gray-500 placeholder-gray-500 rounded-lg px-4 py-2 w-full outline-none"
           />
           <input
             type="date"
             name="date"
             value={form.date}
             onChange={handleChange}
-            className="bg-gray-800 text-white border border-transparent focus:border-gray-500 placeholder-gray-500 rounded-lg px-4 py-2 w-full outline-hidden"
+            className="bg-gray-800 text-white border border-transparent focus:border-gray-500 rounded-lg px-4 py-2 w-full outline-none"
           />
           <select
             name="category"
             value={form.category}
             onChange={handleChange}
-            className="bg-gray-800 text-white rounded-lg px-4 py-2 w-full outline-hidden"
+            className="bg-gray-800 text-white rounded-lg px-4 py-2 w-full outline-none"
           >
             <option value="">Select category</option>
             <option value="Restock">Restock</option>
@@ -88,7 +89,7 @@ function Expenses() {
 
         <button
           onClick={handleSubmit}
-          className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg w-fit transition-colors cursor-pointer"
+          className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg w-fit transition-colors"
         >
           Add Expense
         </button>
@@ -99,7 +100,7 @@ function Expenses() {
         <select
           value={categoryFilter}
           onChange={(e) => setCategoryFilter(e.target.value)}
-          className="bg-gray-800 text-white rounded-lg px-4 py-2 outline-hidden"
+          className="bg-gray-800 text-white rounded-lg px-4 py-2 outline-none"
         >
           <option value="all">All Categories</option>
           <option value="Restock">Restock</option>
@@ -125,7 +126,7 @@ function Expenses() {
           <table className="w-full">
             <thead>
               <tr className="border-b border-gray-800">
-                <th className="text-gray-400 text-sm px-4 py-3 text-left capitalize">
+                <th className="text-gray-400 text-sm px-4 py-3 text-left">
                   Name
                 </th>
                 <th className="text-gray-400 text-sm px-4 py-3 text-left">
@@ -145,7 +146,7 @@ function Expenses() {
                   key={expense.id}
                   className="border-b border-gray-800 last:border-0"
                 >
-                  <td className="text-white text-sm px-4 py-3">
+                  <td className="text-white text-sm px-4 py-3 capitalize">
                     {expense.name}
                   </td>
                   <td className="text-red-400 text-sm px-4 py-3">
