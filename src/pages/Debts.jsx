@@ -53,7 +53,7 @@ function Debts() {
 
       {/* Form */}
       <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 flex flex-col gap-4">
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <input
             type="text"
             name="name"
@@ -109,6 +109,7 @@ function Debts() {
         </button>
       </div>
 
+      {/* Filter options */}
       <div className="flex gap-4">
         <select
           value={statusFilter}
@@ -129,7 +130,7 @@ function Debts() {
       </div>
 
       {/* Table */}
-      <div className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden">
+      <div className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden overflow-x-auto">
         {filteredDebts.length === 0 ? (
           <p className="text-gray-500 text-sm text-center py-8">
             No debts entries yet.
