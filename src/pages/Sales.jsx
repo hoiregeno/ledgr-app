@@ -102,6 +102,7 @@ function Sales() {
             <option value="">Select category</option>
             <option value="Betelnut">Betelnut</option>
             <option value="Cigarettes">Cigarettes</option>
+            <option value="Sweets">Sweets</option>
             <option value="Other">Other</option>
           </select>
         </div>
