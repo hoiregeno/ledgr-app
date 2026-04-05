@@ -55,7 +55,7 @@ function Inventory() {
             value={form.name}
             onChange={handleChange}
             placeholder="Item name"
-            className="bg-gray-800 text-white placeholder-gray-500 rounded-lg px-4 py-2 w-full"
+            className="bg-gray-800 text-white border border-transparent focus:border-gray-500 placeholder-gray-500 rounded-lg px-4 py-2 w-full outline-hidden"
           />
           <input
             type="number"
@@ -63,7 +63,7 @@ function Inventory() {
             value={form.quantity}
             onChange={handleChange}
             placeholder="Quantity"
-            className="bg-gray-800 text-white placeholder-gray-500 rounded-lg px-4 py-2 w-full"
+            className="bg-gray-800 text-white border border-transparent focus:border-gray-500 placeholder-gray-500 rounded-lg px-4 py-2 w-full outline-hidden"
           />
           <input
             type="number"
@@ -71,13 +71,13 @@ function Inventory() {
             value={form.unitPrice}
             onChange={handleChange}
             placeholder="Unit Price (K)"
-            className="bg-gray-800 text-white placeholder-gray-500 rounded-lg px-4 py-2 w-full"
+            className="bg-gray-800 text-white border border-transparent focus:border-gray-500 placeholder-gray-500 rounded-lg px-4 py-2 w-full outline-hidden"
           />
           <select
             name="category"
             value={form.category}
             onChange={handleChange}
-            className="bg-gray-800 text-white rounded-lg px-4 py-2 w-full"
+            className="bg-gray-800 text-white rounded-lg px-4 py-2 w-full outline-hidden"
           >
             <option value="">Select category</option>
             <option value="Betelnut">Betelnut</option>
@@ -89,7 +89,7 @@ function Inventory() {
 
         <button
           onClick={handleSubmit}
-          className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg w-fit transition-colors"
+          className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg w-fit transition-colors cursor-pointer"
         >
           Add Item
         </button>

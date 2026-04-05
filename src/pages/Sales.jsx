@@ -76,7 +76,7 @@ function Sales() {
             value={form.name}
             onChange={handleChange}
             placeholder="Customer name"
-            className="bg-gray-800 text-white placeholder-gray-500 rounded-lg px-4 py-2 w-full"
+            className="bg-gray-800 text-white border border-transparent focus:border-gray-500 placeholder-gray-500 rounded-lg px-4 py-2 w-full outline-hidden"
           />
           <input
             type="number"
@@ -84,20 +84,20 @@ function Sales() {
             value={form.amount}
             onChange={handleChange}
             placeholder="Amount (K)"
-            className="bg-gray-800 text-white placeholder-gray-500 rounded-lg px-4 py-2 w-full"
+            className="bg-gray-800 text-white border border-transparent focus:border-gray-500 placeholder-gray-500 rounded-lg px-4 py-2 w-full outline-hidden"
           />
           <input
             type="date"
             name="date"
             value={form.date}
             onChange={handleChange}
-            className="bg-gray-800 text-white rounded-lg px-4 py-2 w-full"
+            className="bg-gray-800 text-white border border-transparent focus:border-gray-500 rounded-lg px-4 py-2 w-full outline-hidden"
           />
           <select
             name="category"
             value={form.category}
             onChange={handleChange}
-            className="bg-gray-800 text-white rounded-lg px-4 py-2 w-full"
+            className="bg-gray-800 text-white rounded-lg px-4 py-2 w-full outline-hidden"
           >
             <option value="">Select category</option>
             <option value="Betelnut">Betelnut</option>
@@ -141,7 +141,7 @@ function Sales() {
         <select
           value={categoryFilter}
           onChange={(e) => setCategoryFilter(e.target.value)}
-          className="bg-gray-800 text-white rounded-lg px-4 py-2"
+          className="bg-gray-800 text-white rounded-lg px-4 py-2 outline-hidden"
         >
           <option value="all">All Categories</option>
           <option value="Betelnut">Betelnut</option>
@@ -152,7 +152,7 @@ function Sales() {
         <select
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
-          className="bg-gray-800 text-white rounded-lg px-4 py-2"
+          className="bg-gray-800 text-white rounded-lg px-4 py-2 outline-hidden"
         >
           <option value="all">All Status</option>
           <option value="paid">Paid</option>
@@ -161,7 +161,7 @@ function Sales() {
 
         <button
           onClick={() => exportToCSV(sales, "sales.csv")}
-          className="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-lg text-sm transition-colors"
+          className="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-lg text-sm transition-colors cursor-pointer"
         >
           Export CSV
         </button>

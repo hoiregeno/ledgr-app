@@ -60,7 +60,7 @@ function Debts() {
             value={form.name}
             onChange={handleChange}
             placeholder="Person's name"
-            className="bg-gray-800 text-white placeholder-gray-500 rounded-lg px-4 py-2 w-full"
+            className="bg-gray-800 text-white border border-transparent focus:border-gray-500 placeholder-gray-500 rounded-lg px-4 py-2 w-full outline-hidden"
           />
           <input
             type="number"
@@ -68,14 +68,14 @@ function Debts() {
             value={form.amount}
             onChange={handleChange}
             placeholder="Amount (K)"
-            className="bg-gray-800 text-white placeholder-gray-500 rounded-lg px-4 py-2 w-full"
+            className="bg-gray-800 text-white border border-transparent focus:border-gray-500 placeholder-gray-500 rounded-lg px-4 py-2 w-full outline-hidden"
           />
           <input
             type="date"
             name="date"
             value={form.date}
             onChange={handleChange}
-            className="bg-gray-800 text-white rounded-lg px-4 py-2 w-full"
+            className="bg-gray-800 text-white border border-transparent focus:border-gray-500 placeholder-gray-500 rounded-lg px-4 py-2 w-full outline-hidden"
           />
         </div>
 
@@ -103,7 +103,7 @@ function Debts() {
 
         <button
           onClick={handleSubmit}
-          className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg w-fit transition-colors"
+          className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg w-fit transition-colors cursor-pointer"
         >
           Add Debt
         </button>
@@ -114,11 +114,11 @@ function Debts() {
         <select
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
-          className="bg-gray-800 text-white rounded-lg px-4 py-2"
+          className="bg-gray-800 text-white rounded-lg px-4 py-2 outline-hidden"
         >
           <option value="all">Select status</option>
-          <option value="settled">settled</option>
-          <option value="unsettled">unsettled</option>
+          <option value="settled">Settled</option>
+          <option value="unsettled">Unsettled</option>
         </select>
 
         <button

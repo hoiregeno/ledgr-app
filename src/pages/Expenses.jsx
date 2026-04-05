@@ -56,7 +56,7 @@ function Expenses() {
             value={form.name}
             onChange={handleChange}
             placeholder="Expense name"
-            className="bg-gray-800 text-white placeholder-gray-500 rounded-lg px-4 py-2 w-full"
+            className="bg-gray-800 text-white border border-transparent focus:border-gray-500 placeholder-gray-500 rounded-lg px-4 py-2 w-full outline-hidden"
           />
           <input
             type="number"
@@ -64,20 +64,20 @@ function Expenses() {
             value={form.amount}
             onChange={handleChange}
             placeholder="Amount (K)"
-            className="bg-gray-800 text-white placeholder-gray-500 rounded-lg px-4 py-2 w-full"
+            className="bg-gray-800 text-white border border-transparent focus:border-gray-500 placeholder-gray-500 rounded-lg px-4 py-2 w-full outline-hidden"
           />
           <input
             type="date"
             name="date"
             value={form.date}
             onChange={handleChange}
-            className="bg-gray-800 text-white rounded-lg px-4 py-2 w-full"
+            className="bg-gray-800 text-white border border-transparent focus:border-gray-500 placeholder-gray-500 rounded-lg px-4 py-2 w-full outline-hidden"
           />
           <select
             name="category"
             value={form.category}
             onChange={handleChange}
-            className="bg-gray-800 text-white rounded-lg px-4 py-2 w-full"
+            className="bg-gray-800 text-white rounded-lg px-4 py-2 w-full outline-hidden"
           >
             <option value="">Select category</option>
             <option value="Restock">Restock</option>
@@ -88,7 +88,7 @@ function Expenses() {
 
         <button
           onClick={handleSubmit}
-          className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg w-fit transition-colors"
+          className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg w-fit transition-colors cursor-pointer"
         >
           Add Expense
         </button>
@@ -99,7 +99,7 @@ function Expenses() {
         <select
           value={categoryFilter}
           onChange={(e) => setCategoryFilter(e.target.value)}
-          className="bg-gray-800 text-white rounded-lg px-4 py-2"
+          className="bg-gray-800 text-white rounded-lg px-4 py-2 outline-hidden"
         >
           <option value="all">All Categories</option>
           <option value="Restock">Restock</option>
