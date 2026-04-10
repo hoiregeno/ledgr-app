@@ -35,14 +35,12 @@ function Sales() {
       alert("Please fill in all fields before submitting.");
       return;
     }
-
     const newSale = {
       id: Date.now(),
       ...form,
       name: form.name.trim(),
       amount: Number(form.amount),
     };
-
     addEntry("sales", newSale);
     setSales([...sales, newSale]);
     setForm({ name: "", amount: "", date: "", category: "", status: "" });
@@ -61,83 +59,94 @@ function Sales() {
 
   return (
     <div className="flex flex-col gap-8">
-      {/* Heading */}
       <div>
         <h1 className="text-2xl font-bold text-white">Sales</h1>
         <p className="text-gray-400 text-sm mt-1">Track your sales entries</p>
       </div>
 
-      {/* Form */}
       <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 flex flex-col gap-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <input
-            type="text"
-            name="name"
-            value={form.name}
-            onChange={handleChange}
-            placeholder="Customer name"
-            className="bg-gray-800 text-white border border-transparent focus:border-gray-500 placeholder-gray-500 rounded-lg px-4 py-2 w-full outline-none"
-          />
-          <input
-            type="number"
-            name="amount"
-            value={form.amount}
-            onChange={handleChange}
-            placeholder="Amount (K)"
-            className="bg-gray-800 text-white border border-transparent focus:border-gray-500 placeholder-gray-500 rounded-lg px-4 py-2 w-full outline-none"
-          />
-          <input
-            type="date"
-            name="date"
-            value={form.date}
-            onChange={handleChange}
-            className="bg-gray-800 text-white border border-transparent focus:border-gray-500 rounded-lg px-4 py-2 w-full outline-none"
-          />
-          <select
-            name="category"
-            value={form.category}
-            onChange={handleChange}
-            className="bg-gray-800 text-white rounded-lg px-4 py-2 w-full outline-none"
-          >
-            <option value="">Select category</option>
-            <option value="Betelnut">Betelnut</option>
-            <option value="Cigarettes">Cigarettes</option>
-            <option value="Sweets">Sweets</option>
-            <option value="Other">Other</option>
-          </select>
+          <div className="flex flex-col gap-1">
+            <label className="text-gray-400 text-xs">Customer Name</label>
+            <input
+              type="text"
+              name="name"
+              value={form.name}
+              onChange={handleChange}
+              placeholder="Customer name"
+              className="bg-gray-800 text-white border border-transparent focus:border-gray-500 placeholder-gray-500 rounded-lg px-4 py-2 w-full outline-none"
+            />
+          </div>
+          <div className="flex flex-col gap-1">
+            <label className="text-gray-400 text-xs">Amount</label>
+            <input
+              type="number"
+              name="amount"
+              value={form.amount}
+              onChange={handleChange}
+              placeholder="Amount (K)"
+              className="bg-gray-800 text-white border border-transparent focus:border-gray-500 placeholder-gray-500 rounded-lg px-4 py-2 w-full outline-none"
+            />
+          </div>
+          <div className="flex flex-col gap-1">
+            <label className="text-gray-400 text-xs">Date</label>
+            <input
+              type="date"
+              name="date"
+              value={form.date}
+              onChange={handleChange}
+              className="bg-gray-800 text-white border border-transparent focus:border-gray-500 rounded-lg px-4 py-2 w-full outline-none"
+            />
+          </div>
+          <div className="flex flex-col gap-1">
+            <label className="text-gray-400 text-xs">Category</label>
+            <select
+              name="category"
+              value={form.category}
+              onChange={handleChange}
+              className="bg-gray-800 text-white rounded-lg px-4 py-2 w-full outline-none"
+            >
+              <option value="">Select category</option>
+              <option value="Betelnut">Betelnut</option>
+              <option value="Cigarettes">Cigarettes</option>
+              <option value="Sweets">Sweets</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
         </div>
 
-        {/* Radio buttons */}
-        <div className="flex gap-6">
-          <label className="flex items-center gap-2 text-gray-400 text-sm cursor-pointer">
-            <input
-              type="radio"
-              name="status"
-              value="paid"
-              onChange={handleChange}
-            />
-            Paid
-          </label>
-          <label className="flex items-center gap-2 text-gray-400 text-sm cursor-pointer">
-            <input
-              type="radio"
-              name="status"
-              value="unpaid"
-              onChange={handleChange}
-            />
-            Unpaid
-          </label>
+        <div className="flex flex-col gap-1">
+          <label className="text-gray-400 text-xs">Status</label>
+          <div className="flex gap-6">
+            <label className="flex items-center gap-2 text-gray-400 text-sm cursor-pointer">
+              <input
+                type="radio"
+                name="status"
+                value="paid"
+                onChange={handleChange}
+              />
+              Paid
+            </label>
+            <label className="flex items-center gap-2 text-gray-400 text-sm cursor-pointer">
+              <input
+                type="radio"
+                name="status"
+                value="unpaid"
+                onChange={handleChange}
+              />
+              Unpaid
+            </label>
+          </div>
         </div>
 
         <button
           onClick={handleSubmit}
-          className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg w-fit transition-colors cursor-pointer"
+          className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg w-fit transition-colors"
         >
           Add Sale
         </button>
       </div>
 
-      {/* Filters */}
       <div className="flex gap-4">
         <select
           value={categoryFilter}
@@ -150,7 +159,6 @@ function Sales() {
           <option value="Sweets">Sweets</option>
           <option value="Other">Other</option>
         </select>
-
         <select
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
@@ -160,16 +168,14 @@ function Sales() {
           <option value="paid">Paid</option>
           <option value="unpaid">Unpaid</option>
         </select>
-
         <button
           onClick={() => exportToCSV(sales, "sales.csv")}
-          className="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-lg text-sm transition-colors cursor-pointer"
+          className="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-lg text-sm transition-colors"
         >
           Export CSV
         </button>
       </div>
 
-      {/* Table */}
       <div className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden overflow-x-auto">
         {filteredSales.length === 0 ? (
           <p className="text-gray-500 text-sm text-center py-8">
