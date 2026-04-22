@@ -98,6 +98,7 @@ function Debts() {
                 type="radio"
                 name="status"
                 value="settled"
+                checked={form.status === "settled"}
                 onChange={handleChange}
               />
               Settled
@@ -107,6 +108,7 @@ function Debts() {
                 type="radio"
                 name="status"
                 value="unsettled"
+                checked={form.status === "unsettled"}
                 onChange={handleChange}
               />
               Unsettled

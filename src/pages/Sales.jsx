@@ -123,6 +123,7 @@ function Sales() {
                 type="radio"
                 name="status"
                 value="paid"
+                checked={form.status === "paid"}
                 onChange={handleChange}
               />
               Paid
@@ -132,6 +133,7 @@ function Sales() {
                 type="radio"
                 name="status"
                 value="unpaid"
+                checked={form.status === "unpaid"}
                 onChange={handleChange}
               />
               Unpaid
